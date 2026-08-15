@@ -98,18 +98,26 @@ func (c *Claims) UnmarshalJSON(data []byte) error {
 		case keyIss:
 			if s, ok := v.(string); ok {
 				c.Issuer = s
+			} else {
+				c.Extra[k] = v
 			}
 		case keySub:
 			if s, ok := v.(string); ok {
 				c.Subject = s
+			} else {
+				c.Extra[k] = v
 			}
 		case keyAud:
 			if s, ok := v.(string); ok {
 				c.Audience = s
+			} else {
+				c.Extra[k] = v
 			}
 		case keyJti:
 			if s, ok := v.(string); ok {
 				c.ID = s
+			} else {
+				c.Extra[k] = v
 			}
 		case keyExp:
 			t, err := numToDate(v)
